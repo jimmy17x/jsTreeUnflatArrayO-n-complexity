@@ -1,0 +1,56 @@
+.wrap
+{
+	width:421px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.sibling-bg
+{
+	background : #12c3e7 !important;
+	margin:5px;
+	color:black !important ;
+	padding-right: 19px;
+}
+
+
+/*li.jstree-closed > a .jstree-icon { background:url("node-expand.gif") 0px 0px no-repeat !important; }
+li.jstree-open > a .jstree-icon { background:url("node-collapse.gif") 0px 0px no-repeat !important; }*/
+
+
+.child-bg
+{
+	
+	background :#30cd36 !important;
+	margin:5px;
+	color:black !important ;
+	padding-right: 19px;
+}
+
+.parent-bg
+{
+	background : #bebebe !important;
+	margin:5px;
+	color:black !important ;
+	padding-right: 19px;
+}
+
+.current-bg
+{
+	background : #b81500 !important;
+	margin:5px;
+	color:white !important ;
+	padding-right: 19px;
+}
+	
+.red
+{
+  background:red !important;
+  margin:5px;
+  color:white !important ;
+}
+
+.none
+{
+  background:none;
+}
