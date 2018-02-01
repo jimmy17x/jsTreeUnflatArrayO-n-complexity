@@ -4,4 +4,4 @@ This PoC is part of un-flattening a  1-D array having Parent child relations int
 The function unflatArrayToTree() in script.js converts a 1-D array to appropriate JSON in O(n) time complexity using Hashing 
 
 
-![alt text](https://raw.githubusercontent.com/jimmy17x/jsTreeUnflatArrayO-n-complexity/master/demo.png)
+![alt text](https://raw.githubusercontent.com/jimmy17x/jsTreeUnflatArrayO-n-complexity/master/demo_image.png)
