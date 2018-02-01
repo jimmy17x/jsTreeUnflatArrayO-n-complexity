@@ -1,5 +1,5 @@
 # jsTreeUnflatArrayO-n-complexity
-This PoC is part of un-flattening a  1-D array having Parent child relations into a Tree structure using jsTree in O(1) complexity
+This PoC is part of un-flattening a  1-D array having Parent child relations into a Tree structure using jsTree in O(n) complexity
 
 The function unflatArrayToTree() in script.js converts a 1-D array to appropriate JSON in O(n) time complexity using Hashing 
 
