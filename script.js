@@ -115,22 +115,23 @@
 		$('#container').on("select_node.jstree", function (e, data) 
 												{
                                             	var jsons = JSON.parse(data.node.data.apr_info);
-                                            	alert( "Clicked APR id : "  + jsons.id + 
-													"\nTitle : " + jsons.title); 
+													
+													$("#status").text( jsons.title);
                                              }).on('after_open.jstree',
 												function(e, data) {
 													var closed_count = $(".jstree-closed").length;
 
 													if(closed_count == 0)
 													{
-														alert("All rows opened event captutred");
+														$("#status").text("All rows opened event captutred");
 													}
 											}).on('after_close.jstree',
 													function(e, data) {
 														var open_count = $(".jstree-open").length;
 														if(open_count == 0)
 														{
-															alert("All rows closed event captutred");
+															$("#status").text("All rows closed event captutred");
+
 														}
 											});
  
@@ -157,7 +158,7 @@
 				mappedArr[arrElem.id]['a_attr'] = {}
 				mappedArr[arrElem.id]['icon'] = "none";
 				mappedArr[arrElem.id]['dots'] = true;
-        mappedArr[arrElem.id]['data'] = {"apr_info":JSON.stringify(arr[i])};
+				mappedArr[arrElem.id]['data'] = {"apr_info":JSON.stringify(arr[i])};
         
 				mappedArr[arrElem.id]['children'] = [];
 
