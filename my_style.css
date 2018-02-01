@@ -1,6 +1,6 @@
 .wrap
 {
-	width:421px;
+	width:366px;
 	margin: 0 auto;
 	text-align:center;
 }
@@ -11,6 +11,32 @@
 	margin:5px;
 	color:black !important ;
 	padding-right: 19px;
+}
+
+.btn
+{
+  background:#0899cc;
+  color:white;
+  border:none;
+  cursor:pointer;
+  padding:5px;
+  width:100px;
+  margin:5px;
+  text-align:center;
+  border-radius:5px;
+  float:left;
+  margin-bottom:60px;
+  
+}
+
+#container
+{
+	clear:both;
+}
+
+.btn:hover
+{
+  background:#0899ccad;
 }
 
 

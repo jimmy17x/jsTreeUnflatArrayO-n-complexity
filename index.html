@@ -4,15 +4,42 @@
 	<link rel = "stylesheet"  href = "style.min.css" >
 	<link rel = "stylesheet" href = "my_style.css">
 	
+	<script>
+													
+			function openAll()
+			{
+			  $("#container").jstree("open_all"); 
+			}
+
+			function closeAll()
+			{
+			  $("#container").jstree("close_all"); 
+			}
+		</script>
+	
 </head>
 
 <body>
 
 	<div class = "wrap">
-		<h3>Capri Tree structure OpenCAF PoC</h3>
-		<div id="container">
-			
-		</div><!--container ends here -->
+	
+		<h3> 
+			Tree structure PoC - unflat 1d array in O(n) time complexity and build a tree 		
+		</h3>
+		
+		<div id = "open-all " class = "btn" onclick="openAll()">
+			Open all
+		</div>
+
+		<div id = "close-all " class = "btn" onclick="closeAll()">
+			Close all
+		</div>	
+		
+		<div id="container"></div>
+
+		
+
+		
 	</div> <!-- wrap ends here -->
 	
 	

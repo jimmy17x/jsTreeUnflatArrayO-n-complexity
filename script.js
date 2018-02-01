@@ -7,7 +7,7 @@
 									   'aprInfo':[
 										  {
 											 'id':'11719201801231331',
-											 'title':'Sprint9_Demo_Madhu2',
+											 'title':'Goats and pigs',
 											 'parentId':'11715201801231224',
 											 'type':'Child',
 											 'status':'InRouting',
@@ -19,7 +19,7 @@
 										  },
 										  {
 											 'id':'11715201801231224',
-											 'title':'Sprint9_Demo_Madhu',
+											 'title':'Roads to the village',
 											 'parentId':null,
 											 'type':'Parent',
 											 'status':'InProgress',
@@ -31,7 +31,7 @@
 										  },
 										  {
 											 'id':'11718201801231242',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'Flowers during the sunrise',
 											 'parentId':'11715201801231224',
 											 'type':'Sibling',
 											 'status':'InProgress',
@@ -42,7 +42,7 @@
 											 'region':'AP'
 										  },{
 											 'id':'11718201801231242',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'Skateboards in evening',
 											 'parentId':'11715201801231224',
 											 'type':'Sibling',
 											 'status':'InProgress',
@@ -54,7 +54,7 @@
 										  },
 										  {
 											 'id':'11721201801240801',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'Smiling is the only blessing',
 											 'parentId':'11718201801231242',
 											 'type':'Sibling',
 											 'status':'New',
@@ -65,7 +65,7 @@
 											 'region':'AP'
 										  },{
 											 'id':'1172120180124080',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'Walking free is everybody\'s right !',
 											 'parentId':'11718201801231242',
 											 'type':'Sibling',
 											 'status':'New',
@@ -76,7 +76,7 @@
 											 'region':'AP'
 										  },{
 											 'id':'117212018024080',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'Rivers flows in valleys',
 											 'parentId':'11718201801231242',
 											 'type':'Sibling',
 											 'status':'New',
@@ -87,7 +87,7 @@
 											 'region':'AP'
 										  },{
 											 'id':'1172120124080',
-											 'title':'Sprint9_Demo_Madhu1',
+											 'title':'A big fat hen',
 											 'parentId':'11718201801231242',
 											 'type':'Sibling',
 											 'status':'New',
@@ -103,7 +103,7 @@
 	
 	// A $( document ).ready() block.
 	$( document ).ready(function() {
-		
+ 
 		var tree = unflatArrayToTree(JSON_NETWORK_RESPONSE.aprInfo);
 		var js_tree_dump = {};
 		js_tree_dump["core"]={};
@@ -112,7 +112,29 @@
 		
 		
 		$('#container').jstree(js_tree_dump);
-		console.log(JSON.stringify(js_tree_dump));
+		$('#container').on("select_node.jstree", function (e, data) 
+												{
+                                            	var jsons = JSON.parse(data.node.data.apr_info);
+                                            	alert( "Clicked APR id : "  + jsons.id + 
+													"\nTitle : " + jsons.title); 
+                                             }).on('after_open.jstree',
+												function(e, data) {
+													var closed_count = $(".jstree-closed").length;
+
+													if(closed_count == 0)
+													{
+														alert("All rows opened event captutred");
+													}
+											}).on('after_close.jstree',
+													function(e, data) {
+														var open_count = $(".jstree-open").length;
+														if(open_count == 0)
+														{
+															alert("All rows closed event captutred");
+														}
+											});
+ 
+
 		
 
 		// this function converts a flatted array to a tree structure in O(n) time using hashing 
@@ -122,7 +144,7 @@
 				  arrElem,
 				  mappedElem;
 				  
-				  var cuurent_apr = "2018-0015728-001-S";
+				  var cuurent_apr = "AP-2018-0015728-001-S";
 
 			  // First map the nodes of the array to an object -> create a hash table.
 			  for(var i = 0, len = arr.length; i < len; i++) {
@@ -130,31 +152,42 @@
 				arrElem = arr[i];
 				mappedArr[arrElem.id] = arrElem;
 				mappedArr[arrElem.id]['text'] = arrElem.longId + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + arrElem.title;
-				mappedArr[arrElem.id]['a_attr'] = {};
+				
+
+				mappedArr[arrElem.id]['a_attr'] = {}
 				mappedArr[arrElem.id]['icon'] = "none";
 				mappedArr[arrElem.id]['dots'] = true;
+        mappedArr[arrElem.id]['data'] = {"apr_info":JSON.stringify(arr[i])};
+        
 				mappedArr[arrElem.id]['children'] = [];
 
-				
+        
+        
 				//apply appropriate css to APR
-				var bg_class = {"class":"child-bg"};
+				var bg_class = "child-bg";
 				// get type of the APR
 				var elem_type = arrElem["type"];
 				
 				if(arrElem.longId === cuurent_apr)
 				{
-					bg_class = {"class":"current-bg"}
+					bg_class = "current-bg";
 				}	
 				else if(elem_type === 'Parent')
 				{
-					bg_class = {"class":"parent-bg"}
+					bg_class = "parent-bg";
 				}
 				else if (elem_type === 'Sibling')
 				{
-					bg_class = {"class":"sibling-bg"}
+					bg_class = "sibling-bg";
 				}
+        
+        	var title =  "Product Title:"+arrElem["productTitle"] + "\nAPR Status:"+arrElem["status"]+"\nShip to Trade Date:"+ arrElem["STTDate"]+"\nAPR Coordinator:"+arrElem["coordinator"]+"\nAPR Title:"+ arrElem["title"];
 				
-				mappedArr[arrElem.id]['a_attr'] = bg_class;
+				mappedArr[arrElem.id]['a_attr'] = {
+        																		"class" : bg_class ,
+        																		"data-ng-click" :"updateResults\(" + arrElem+ "\)",
+                                            "title":title
+                                           }; 
 			  }
 
 				// this is tricky - only include that element in tree which is Parent(root) otherwise populate child array for each relative parent
@@ -176,9 +209,4 @@
 		
 		
 	});
-	
- 
-
-
-	
 	
